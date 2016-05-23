@@ -20,33 +20,52 @@
 
 -(NSArray*)namesForIceCream:(NSString *)iceCream {
     
-    NSDictionary *iceCreamByName = @{ @"Joe": @"Peanut Butter and Chocolate",
-                                        
-                                        @"Tim" : @"Natural Vanilla",
-                                        
-                                        @"Sophie" : @"Mexican Chocolate",
-                                        
-                                        @"Deniz" : @"Natural Vanilla",
-                                        
-                                        @"Tom" : @"Mexican Chocolate",
-                                        
-                                        @"Jim" : @"Natural Vanilla",
-                                        
-                                        @"Mark" : @"Cookies 'n Cream"};
+    NSDictionary *iceCreamByName = @{ @"Joe" : @"Peanut Butter and Chocolate",
+                                      @"Tim" : @"Natural Vanilla",
+                                      @"Sophie" : @"Mexican Chocolate",
+                                      @"Deniz" : @"Natural Vanilla",
+                                      @"Tom" : @"Mexican Chocolate",
+                                      @"Jim" : @"Natural Vanilla",
+                                      @"Mark" : @"Cookies 'n Cream"
+                                      };
     
     
-    NSDictionary *countsByIceCream = @{ @"Peanut Butter and Chocolate" : @1     ,
-                          @"Natural Vanilla"             : @3     ,
-                          @"Mexican Chocolate"           : @2     ,
-                          @"Cookies 'n Cream"            : @1    };
+    NSMutableArray *namesForIceCream = [NSMutableArray new];
     
-    
-    return nil;
+    for (NSArray *name in iceCreamByName)
+    {
+        if ([iceCreamByName[name] isEqualToString:iceCream])
+        {
+            [namesForIceCream addObject: name];
+        };
+        NSLog(@"%@", namesForIceCream);
+        
+    }
+    return namesForIceCream;
 }
 
--(NSDictionary *)countsOfIceCream:(NSDictionary *)iceCreamByName {
+-(NSDictionary*)countsOfIceCream:(NSDictionary *)iceCreamByName
+{
+    NSString *iceCream;
+    NSMutableDictionary *countsOfIceCream = [NSMutableDictionary dictionary];
     
-    return nil;
+    NSArray *namesOfPeople = [NSArray new];
+    NSNumber *countPeople = nil;
+    
+    for (NSString *key in iceCreamByName)
+    {
+        iceCream = iceCreamByName [key];
+        if ([countsOfIceCream objectForKey:iceCream] == 0)
+        {
+            namesOfPeople = [self namesForIceCream:iceCream];
+            countPeople = @([namesOfPeople count]);
+            countsOfIceCream[iceCream]=countPeople;
+        }
+    }
+    
+    NSLog(@"%@", countsOfIceCream);
+    return countsOfIceCream;
 }
+
 
 @end
